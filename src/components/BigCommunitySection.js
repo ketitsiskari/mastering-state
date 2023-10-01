@@ -1,32 +1,19 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { toggleVisibility } from '../redux/visibilitySlice';
+import { fetchUsers } from '../redux/usersSlice';
+
 
 function CommunitySection() {
-    const [communityMembers, setCommunityMembers] = useState([]);
-    const [isLoading, setIsLoading] = useState(true);
-    const [error, setError] = useState(null);
-    const [isContentVisible, setIsContentVisible] = useState(true); // to manage content visibility
+    const dispatch = useDispatch();
+    const users = useSelector((state) => state.users.data);
+    const isLoading = useSelector((state) => state.users.isLoading);
+    const error = useSelector((state) => state.users.error);
+    const isContentVisible = useSelector((state) => state.visibility.isContentVisible);
 
-    useEffect(() => {
-        fetch('http://localhost:3000/community')
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Failed to fetch community members.');
-                }
-                return response.json();
-            })
-            .then(data => {
-                setCommunityMembers(data);
-                setIsLoading(false);
-            })
-            .catch(err => {
-                setError(err.message);
-                setIsLoading(false);
-            });
-    }, []);
-
-    const toggleContentVisibility = () => {
-        setIsContentVisible(prevState => !prevState);
-    };
+    React.useEffect(() => {
+        dispatch(fetchUsers());
+    }, [dispatch]);
 
     if (isLoading) {
         return <div>Loading...</div>;
@@ -40,7 +27,7 @@ function CommunitySection() {
         <div className='community-section'>
             <div className="section-header">
                 <h1 className='community-title'>Big community of <br/>  people like you</h1>
-                <button className="hide-section-btn" onClick={toggleContentVisibility}>
+                <button className="hide-section-btn" onClick={() => dispatch(toggleVisibility())}>
                     {isContentVisible ? "Hide section" : "Show section"}
                 </button>
             </div>
@@ -48,7 +35,7 @@ function CommunitySection() {
                 <>
                     <p>We’re proud of our products, and we’re really excited <br/> when we get feedback from our users.</p>
                     <div className='community-grid'>
-                        {communityMembers.map(member => (
+                        {users.map(member => (
                             <div key={member.id} className="community-item">
                                 <img src={member.avatar} alt={`${member.firstName} ${member.lastName}`} />
                                 <h2 className="name">{member.firstName} {member.lastName}</h2>
@@ -71,7 +58,3 @@ function CombinedComponent() {
 }
 
 export default CombinedComponent;
-
-
-
-
