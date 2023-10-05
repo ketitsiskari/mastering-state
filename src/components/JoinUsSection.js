@@ -1,4 +1,3 @@
-// src/components/JoinUsSection.js
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { toggleSubscription } from '../redux/subscriptionSlice'; 
@@ -60,7 +59,7 @@ function JoinUsSection() {
                             onChange={(e) => setEmail(e.target.value)}
                         />
                     )}
-                    <button className="subscribe-button" disabled={loading} style={loading ? {opacity: 0.5} : {}}>
+                    <button className="subscribe-button" disabled={loading} style={loading ? {opacity: 0.5} : isSubscribed ? {opacity: 0.5} : {}}>
                         {isSubscribed ? 'Unsubscribe' : 'Subscribe'}
                     </button>
                 </form>

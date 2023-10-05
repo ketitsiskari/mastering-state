@@ -1,4 +1,3 @@
-// src/components/MainComponent.js
 import React from "react";
 import JoinUsSection from "./JoinUsSection";
 import CommunitySection from './BigCommunitySection';

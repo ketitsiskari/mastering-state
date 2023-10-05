@@ -38,6 +38,7 @@ function CommunitySection() {
                         {users.map(member => (
                             <div key={member.id} className="community-item">
                                 <img src={member.avatar} alt={`${member.firstName} ${member.lastName}`} />
+                                <p>Lorem ipsum dolor sit amet,<br/> consectetur adipiscing elit, sed do<br/> eiusmod tempor incididunt ut<br/> labore et dolore.</p>
                                 <h2 className="name">{member.firstName} {member.lastName}</h2>
                                 <p className="designation">{member.position}</p>
                             </div>
