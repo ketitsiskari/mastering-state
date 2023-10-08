@@ -2,6 +2,7 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { toggleVisibility } from '../redux/visibilitySlice';
 import { fetchUsers } from '../redux/usersSlice';
+import { Link } from 'react-router-dom';
 
 
 function CommunitySection() {
@@ -39,7 +40,9 @@ function CommunitySection() {
                             <div key={member.id} className="community-item">
                                 <img src={member.avatar} alt={`${member.firstName} ${member.lastName}`} />
                                 <p>Lorem ipsum dolor sit amet,<br/> consectetur adipiscing elit, sed do<br/> eiusmod tempor incididunt ut<br/> labore et dolore.</p>
-                                <h2 className="name">{member.firstName} {member.lastName}</h2>
+                                <h2 className="name">
+                                <Link to={`/community/${member.id}`}>{member.firstName} {member.lastName}</Link>
+                                </h2>
                                 <p className="designation">{member.position}</p>
                             </div>
                         ))}

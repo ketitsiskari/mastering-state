@@ -96,7 +96,6 @@
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
   }
-  
   .community-item {
   background-color: #f7f7f7;
   padding: 20px;
@@ -179,4 +178,29 @@
 .hide-section-btn:hover {
     background-color: red;
     color: white;
+}
+
+
+
+/* NotFound.css */
+
+.not-found {
+  background-color: rgb(185, 182, 182);
+    padding: 115px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.not-found p {
+  max-width: 80%;
+  text-align: center; 
+}
+
+.not-found a {
+  text-decoration: none;
+  margin-top: 20px;
+  color: green;
+  cursor: pointer;
+  padding: 10px 20px;
 }
